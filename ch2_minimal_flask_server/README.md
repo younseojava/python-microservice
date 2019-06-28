@@ -4,5 +4,5 @@
  - How to run: 
  - $ python weather.py - this will start web server
  - On the browser:
-   - http://localhost:8089/  - basic template web page
-   - http://localhsot:8089/weather - weather look-up application
+   - http://localhost:8099/  - basic template web page
+   - http://localhsot:8099/weather - weather look-up application
