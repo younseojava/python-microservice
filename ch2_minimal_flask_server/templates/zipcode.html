@@ -1,0 +1,63 @@
+<title>Weather Data By Zip Code</title>
+
+    <link rel="stylesheet" media="screen" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="static/css/div-table.css">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+
+<div class="container">
+    <h2>Weather Data By Zip Code</h2>
+
+    <form action="" method="post">
+        {{ form.csrf }}
+        <p>
+        <div class="input text">
+            {{ form.zip.label }} {{ form.zip }}
+        </div>
+        </p>
+
+        <p>
+        <div class="input submit">
+            <input type="submit" value="Submit">
+        </div>
+        </p>
+    </form>
+
+    <div class="divTable" style="width: 70%;border: 2px solid #000;">
+        <div class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell">&nbsp;City</div>
+                <div class="divTableCell">&nbsp;{{ weather.city }}</div>
+            </div>
+            <div class="divTableRow">
+                <div class="divTableCell">&nbsp;Summary</div>
+                <div class="divTableCell">&nbsp;{{ weather.summary }}</div>
+            </div>
+            <div class="divTableRow">
+                <div class="divTableCell">&nbsp;Temperature</div>
+                <div class="divTableCell">&nbsp;{{ weather.temp }}</div>
+            </div>
+            <div class="divTableRow">
+                <div class="divTableCell">&nbsp;Pressure</div>
+                <div class="divTableCell">&nbsp;{{ weather.press }}</div>
+            </div>
+            <div class="divTableRow">
+                <div class="divTableCell">&nbsp;Humidity</div>
+                <div class="divTableCell">&nbsp;{{ weather.humid }}</div>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li><b> {{ message[1] }} </b></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </p>
+
+</div>
