@@ -1,7 +1,7 @@
 import requests
 import json
 from flask import Flask, render_template, request, flash
-from wtforms import Form, validators, TextField
+from wtforms import Form, validators, StringField
 
 
 OPENWEATHER_API_URL = 'http://api.openweathermap.org/data/2.5/weather?zip={},us&appid=bed42a048077065f193f82b6c4726144'
@@ -24,7 +24,7 @@ Second endpoint, weather fetching method defined as member of a class
 """
 class GetZipCodeForm(Form):
 
-    zip = TextField('Zip Code:', validators=[validators.DataRequired()])
+    zip = StringField('Zip Code:', validators=[validators.DataRequired()])
 
     @app.route('/weather', methods=['GET', 'POST'])
     def get_weather():
@@ -34,13 +34,13 @@ class GetZipCodeForm(Form):
         if request.method == 'POST':
             zip = request.form['zip']
             print(f'zip = {zip}')
-        
+
         weather = {}
 
         if form.validate():
             weather_json = fetch_weather_from_api(zip)
             print(f'weather_json = {weather_json}')
-            
+
             if 'name' in weather_json:
                 city_name = weather_json['name']
                 summary = weather_json['weather'][0]['description']
@@ -56,7 +56,7 @@ class GetZipCodeForm(Form):
 
                 flash('Success!')
             else:
-                flash('Invalid ZIP code entered')    
+                flash('Invalid ZIP code entered')
         else:
             flash('All the form fields are required.')
 
